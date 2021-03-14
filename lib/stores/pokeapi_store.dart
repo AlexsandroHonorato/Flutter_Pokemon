@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokemon/consts/consts_api.dart';
 import 'package:pokemon/models/pokeapi.dart';
@@ -10,16 +11,13 @@ class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
   @observable
-  PokeApi _pokeApi;
-
-  @observable
-  PokeApi get pokeApi => _pokeApi;
+  PokeApi _pokeAPI;
 
   @action
   fetchPokemonList() {
-    _pokeApi = null;
-    loadPokeAPI().then((_pokeList) {
-      _pokeApi = _pokeList;
+    _pokeAPI = null;
+    loadPokeAPI().then((pokeList) {
+      _pokeAPI = pokeList;
     });
   }
 
